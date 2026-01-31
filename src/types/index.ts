@@ -15,6 +15,19 @@ export type LoginPayload = {
   password: string;
 };
 
+export type LoginForm = {
+  email: string;
+  password: string;
+};
+
+export type SignupForm = {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  secretKey?: string;
+};
+
 export interface User {
   _id: string;
   name: string;

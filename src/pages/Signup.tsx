@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { signup } from '../api/auth';
+import { type SignupForm } from '../types/index';
 import {
   container,
   card,
@@ -16,17 +17,9 @@ import {
 } from '../styles/authStyles';
 import { signupText } from '../constants/signupConstants';
 
-type FormState = {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  secretKey?: string;
-};
-
 const Signup: React.FC = () => {
   const navigate = useNavigate();
-  const [form, setForm] = useState<FormState>({
+  const [form, setForm] = useState<SignupForm>({
     name: '',
     email: '',
     password: '',

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { login } from '../api/auth';
+import { type LoginForm } from '../types/index';
 import {
   container,
   card,
@@ -14,11 +15,6 @@ import {
   buttonPrimary,
 } from '../styles/authStyles';
 import { loginText } from '../constants/loginConstants';
-
-type LoginForm = {
-  email: string;
-  password: string;
-};
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
