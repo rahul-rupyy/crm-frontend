@@ -13,7 +13,7 @@ export interface Note {
   _id: string;
   text: string;
   leadId: string;
-  createdBy: User; 
+  createdBy: User;
   createdAt: string;
 }
 
@@ -24,8 +24,12 @@ export interface Lead {
   phone: string;
   source: LeadSource;
   status: LeadStatus;
-  assignedTo: string; 
-  createdBy: string;  
+  assignedTo: string;
+  createdBy: string;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface NoteProps {
+  leadId: string;
 }
