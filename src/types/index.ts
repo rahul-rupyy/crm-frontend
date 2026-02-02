@@ -35,6 +35,19 @@ export interface User {
   role: Role;
 }
 
+// Auth response types based on backend payload
+export interface AuthUser {
+  id: string;
+  email: string;
+  name: string;
+  role: Role;
+}
+
+export interface AuthData {
+  access_token: string;
+  user: AuthUser;
+}
+
 export interface Note {
   _id: string;
   text: string;
