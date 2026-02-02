@@ -68,3 +68,17 @@ export interface Lead {
   createdAt: string;
   updatedAt: string;
 }
+
+// Dashboard
+
+export interface DashboardMetrics {
+  totalLeads: number;
+  leadsByStatus: Record<LeadStatus, number>;
+  assignedLeads: number;
+  convertedLeads: number;
+}
+
+export interface DashboardFiltersState {
+  status: LeadStatus[];
+  source: LeadSource[];
+}
