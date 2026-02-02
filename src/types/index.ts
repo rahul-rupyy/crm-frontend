@@ -2,8 +2,34 @@ export type LeadStatus = 'new' | 'contacted' | 'interested' | 'converted';
 export type LeadSource = 'website' | 'referral' | 'ad' | 'manual';
 export type Role = 'admin' | 'user';
 
+export type SignupPayload = {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  secretKey?: string;
+};
+
+export type LoginPayload = {
+  email: string;
+  password: string;
+};
+
+export type LoginForm = {
+  email: string;
+  password: string;
+};
+
+export type SignupForm = {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  secretKey?: string;
+};
+
 export interface User {
-  id: string;
+  _id: string;
   name: string;
   email: string;
   role: Role;
@@ -13,7 +39,7 @@ export interface Note {
   _id: string;
   text: string;
   leadId: string;
-  createdBy: User; 
+  createdBy: User;
   createdAt: string;
 }
 
@@ -24,8 +50,8 @@ export interface Lead {
   phone: string;
   source: LeadSource;
   status: LeadStatus;
-  assignedTo: string; 
-  createdBy: string;  
+  assignedTo: string;
+  createdBy: string;
   createdAt: string;
   updatedAt: string;
 }
