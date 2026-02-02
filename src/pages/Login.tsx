@@ -33,7 +33,7 @@ const Login: React.FC = () => {
     try {
       setLoading(true);
       const res = await login({ email: form.email.trim(), password: form.password });
-      if (res?.token) {
+      if (res?.access_token) {
         navigate('/leads');
       } else {
         setError(loginText.errorNoToken);
