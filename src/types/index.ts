@@ -68,3 +68,19 @@ export interface Lead {
   createdAt: string;
   updatedAt: string;
 }
+export interface CreateLeadPayload {
+  name: string;
+  email: string;
+  phone: string;
+  source: LeadSource;
+  status?: LeadStatus;
+}
+export interface ApiResponse<T> {
+  success: boolean;
+  data: T;
+  message: string;
+}
+export interface ApiError {
+  response?: { data?: { message?: string } };
+  message?: string;
+}
