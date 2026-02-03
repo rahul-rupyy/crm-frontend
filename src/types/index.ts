@@ -88,3 +88,16 @@ export interface ApiError {
   response?: { data?: { message?: string } };
   message?: string;
 }
+// Dashboard
+
+export interface DashboardMetrics {
+  totalLeads: number;
+  leadsByStatus: Record<LeadStatus, number>;
+  assignedLeads: number;
+  convertedLeads: number;
+}
+
+export interface DashboardFiltersState {
+  status: LeadStatus[];
+  source: LeadSource[];
+}
