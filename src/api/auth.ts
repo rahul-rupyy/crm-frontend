@@ -4,6 +4,7 @@ import { type SignupPayload, type LoginPayload, type AuthData } from '../types/i
 
 export const signup = async (payload: SignupPayload): Promise<AuthData> => {
   const res = await api.post('/auth/signup', payload);
+
   return res.data.data as AuthData;
 };
 
