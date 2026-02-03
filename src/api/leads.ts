@@ -1,17 +1,29 @@
-import type { Lead } from '../types';
 import api from './axios';
+import type { Lead, CreateLeadPayload, ApiResponse } from '../types/index';
 
 export const getLeads = async () => {
-  const { data } = await api.get<Lead[]>('/leads');
-  return data;
+  const { data } = await api.get<ApiResponse<Lead[]>>('/leads?limit=100');
+  return data.data;
 };
 
-export const createLead = async (leadData: Partial<Lead>) => {
-  const { data } = await api.post<Lead>('/leads', leadData);
-  return data;
+// NEW: Get Single Lead
+export const getLead = async (id: string) => {
+  const { data } = await api.get<ApiResponse<Lead>>(`/leads/${id}`);
+  return data.data;
 };
 
-export const updateLead = async (id: string, leadData: Partial<Lead>) => {
-  const { data } = await api.patch<Lead>(`/leads/${id}`, leadData);
+export const createLead = async (payload: CreateLeadPayload) => {
+  const { data } = await api.post<ApiResponse<Lead>>('/leads', payload);
+  return data.data;
+};
+
+// NEW: Update Lead
+export const updateLead = async (id: string, payload: Partial<Lead>) => {
+  const { data } = await api.patch<ApiResponse<Lead>>(`/leads/${id}`, payload);
+  return data.data;
+};
+
+export const deleteLead = async (id: string) => {
+  const { data } = await api.delete<ApiResponse<null>>(`/leads/${id}`);
   return data;
 };

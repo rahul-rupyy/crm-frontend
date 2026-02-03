@@ -68,3 +68,36 @@ export interface Lead {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface NoteProps {
+  leadId: string;
+}
+export interface CreateLeadPayload {
+  name: string;
+  email: string;
+  phone: string;
+  source: LeadSource;
+  status?: LeadStatus;
+}
+export interface ApiResponse<T> {
+  success: boolean;
+  data: T;
+  message: string;
+}
+export interface ApiError {
+  response?: { data?: { message?: string } };
+  message?: string;
+}
+// Dashboard
+
+export interface DashboardMetrics {
+  totalLeads: number;
+  leadsByStatus: Record<LeadStatus, number>;
+  assignedLeads: number;
+  convertedLeads: number;
+}
+
+export interface DashboardFiltersState {
+  status: LeadStatus[];
+  source: LeadSource[];
+}
