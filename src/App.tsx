@@ -6,6 +6,7 @@ import PrivateRoute from './components/PrivateRoute';
 import LeadsList from './pages/LeadList';
 import AddLead from './pages/AddLead';
 import LeadDetails from './pages/LeadDetails';
+import Dashboard from './pages/dashboard';
 
 function App() {
   return (
@@ -15,7 +16,14 @@ function App() {
         <Routes>
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
-
+          <Route
+            path='/dashboard'
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
           <Route
             path='/leads'
             element={

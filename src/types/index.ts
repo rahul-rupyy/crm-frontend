@@ -91,10 +91,11 @@ export interface ApiError {
 // Dashboard
 
 export interface DashboardMetrics {
-  totalLeads: number;
-  leadsByStatus: Record<LeadStatus, number>;
   assignedLeads: number;
   convertedLeads: number;
+  leadsByStatus: Record<string, number>;
+
+  totalLeads: number;
 }
 
 export interface DashboardFiltersState {

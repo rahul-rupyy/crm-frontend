@@ -1,14 +1,20 @@
-import axios from './axios';
-import type { DashboardMetrics, Lead, DashboardFiltersState } from '../types';
+import api from './axios';
+import type { DashboardMetrics, Lead, ApiResponse } from '../types';
 
-export const getDashboardMetrics = () => {
-  return axios.get<DashboardMetrics>('/leads/dashboard/metrics');
-};
-
-interface GetDashboardLeadsParams extends DashboardFiltersState {
+export interface GetDashboardLeadsParams {
+  status?: string;
+  source?: string;
   search?: string;
 }
 
-export const getDashboardLeads = (params: GetDashboardLeadsParams) => {
-  return axios.get<Lead[]>('/leads/dashboard', { params });
+export const getDashboardMetrics = async (): Promise<DashboardMetrics> => {
+  // 1. Axios returns response.data (which is our ApiResponse)
+  // 2. We return response.data.data (which is DashboardMetrics)
+  const response = await api.get<ApiResponse<DashboardMetrics>>('/leads/dashboard');
+  return response.data.data;
+};
+
+export const getDashboardLeads = async (params: GetDashboardLeadsParams): Promise<Lead[]> => {
+  const response = await api.get<ApiResponse<Lead[]>>('/leads', { params });
+  return response.data.data;
 };

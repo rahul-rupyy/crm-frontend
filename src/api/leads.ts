@@ -2,7 +2,7 @@ import api from './axios';
 import type { Lead, CreateLeadPayload, ApiResponse } from '../types/index';
 
 export const getLeads = async () => {
-  const { data } = await api.get<ApiResponse<Lead[]>>('/leads?limit=100');
+  const { data } = await api.get<ApiResponse<Lead[]>>('/leads?limit=500');
   return data.data;
 };
 
