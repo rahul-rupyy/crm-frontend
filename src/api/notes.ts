@@ -21,5 +21,16 @@ export const getNotesByLeadId = async (leadId: string): Promise<Note[]> => {
 export const createNote = async (leadId: string, noteData: Partial<Note>): Promise<Note | null> => {
   const response = await api.post(`/leads/${leadId}/notes`, noteData);
   const data = unwrap<Note>(response.data);
+
+  if (data == null) {
+    // Backend didn't return the created note; try fetching notes and return the most recent one
+    try {
+      const notes = await getNotesByLeadId(leadId);
+      if (Array.isArray(notes) && notes.length > 0) return notes[notes.length - 1];
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   return data;
 };
