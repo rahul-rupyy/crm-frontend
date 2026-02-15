@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import { login } from '../api/auth';
 import { type LoginForm } from '../types/index';
 import {
@@ -33,8 +34,17 @@ const Login: React.FC = () => {
     try {
       setLoading(true);
       const res = await login({ email: form.email.trim(), password: form.password });
+
+      // 2. Updated logic to save the token
       if (res?.access_token) {
-        navigate('/leads');
+        // Save the token in a cookie named 'token' so the Axios interceptor can find it
+        Cookies.set('token', res.access_token, {
+          expires: 7, // Token cookie lasts 7 days
+          secure: true,
+          sameSite: 'strict',
+        });
+
+        navigate('/dashboard');
       } else {
         setError(loginText.errorNoToken);
       }

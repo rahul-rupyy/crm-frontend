@@ -2,6 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const API_URL = import.meta.env.VITE_API_URL;
+
 const api = axios.create({
   baseURL: API_URL,
   headers: {
@@ -26,7 +27,7 @@ api.interceptors.response.use(
     if (error.response?.status === 401) {
       Cookies.remove('token');
       if (window.location.pathname !== '/login') {
-        window.location.href = '/login';
+        window.location.replace('/login');
       }
     }
     return Promise.reject(error);
